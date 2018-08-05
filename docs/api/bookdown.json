@@ -1,7 +1,9 @@
 {
   "title": "API",
   "content": [
-    {"event_machine": "event-machine/bookdown.json"}
+    {"event_machine": "event-machine/bookdown.json"},
+    {"document_store": "document-store/bookdown.json"},
+    {"projections": "projections/bookdown.json"}
   ],
   "tocDepth": 1
 }

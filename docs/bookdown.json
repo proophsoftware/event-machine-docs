@@ -14,7 +14,6 @@
     "template": "../template/main.php",
     "target": "./html",
     "numbering": false,
-    "rootHref": "https://proophsoftware.github.io/event-machine/",
     "extensions": {
         "commonmark": [
             "Webuni\\CommonMark\\TableExtension\\TableExtension",

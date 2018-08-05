@@ -1,26 +1,31 @@
 # Set Up
 
-Event Machine is not a full stack framework. Instead you integrate it any PHP framework that supports [PHP Standards Recommendations](https://www.php-fig.org/psr/).
+{.alert .alert-info}
+Event Machine is not a full stack framework. Instead you integrate it any PHP framework that supports [PHP Standards Recommendations](https://www.php-fig.org/psr/){: class="alert-link"}.
 
 ## Skeleton
 
 The easiest way to get started is by using the [skeleton](https://github.com/proophsoftware/event-machine-skeleton).
 It ships with a preconfigured Event Machine, a recommended project structure, ready-to-use docker containers and Zend Strategility to handle HTTP requests.
 
-However, the skeleton is not the only way to set up Event Machine. You can tweak set up as needed and integrate Event Machine with Symfony, Laravel or any other framework
+{.alert .alert-light}
+The skeleton is not the only way to set up Event Machine. You can tweak set up as needed and integrate Event Machine with Symfony, Laravel or any other framework
 or middleware dispatcher.
 
 ## Required Infrastructure
 
-Event Machine is based on PHP 7.1 or higher. Package dependencies are installed using [composer](https://getcomposer.org/).
+Event Machine is based on **PHP 7.1 or higher**. Package dependencies are installed using [composer](https://getcomposer.org/).
 
 ### Database
 
 Event Machine uses [prooph/event-store](http://docs.getprooph.org/event-store/) to store **events** recorded by the **write model**
-and a [DocumentStore](../document-store/overview.md) to store the **read model**. The skeleton uses prooph's Postgres event store
+and a **DocumentStore** (see "Document Store" chapter) to store the **read model**.
+
+{.alert .alert-light}
+The skeleton uses prooph's Postgres event store
 and a [Postgres Document Store](https://github.com/proophsoftware/postgres-document-store) implementation.
 This allows Event Machine to work with a single database, but that's not a requirement. You can mix and match as needed and also use
-a storage mechanism not implementing the document store interface by using [custom projections](../projections/custom_projections.md).
+a storage mechanism not implementing the document store interface by using custom projections (more on that in the "projections" chapter).
 
 #### Creating The Event Stream
 
@@ -55,7 +60,7 @@ echo "done.\n";
 ```
 
 Such a [script](https://github.com/proophsoftware/event-machine-skeleton/blob/master/scripts/create_event_stream.php) is used in the skeleton.
-As you can see we request the event store from a container that we get by requiring a config file. The skeleton uses [Zend Strategility](https://github.com/zendframework/zend-stratigility)
+As you can see we request the event store from a container that we get from a config file. The skeleton uses [Zend Strategility](https://github.com/zendframework/zend-stratigility)
 and this is a common approach in Strategility (and Zend Expressive) based applications. If you want to use another framework, adopt the script accordingly.
 The only thing that really matters is that you get a configured prooph/event-store from the [PSR-11 container](https://www.php-fig.org/psr/psr-11/)
 used by Event Machine.
@@ -138,8 +143,9 @@ $eventMachine->load(App\Api\Command::class);
 Event Machine is bootstrapped in three phases. *Descriptions* are loaded first, followed by a `$eventMachine->initialize($container, $appVersion)` call.
 Finally, `$eventMachine->bootstrap($environment, $debugMode)` prepares the system so that it can handle incoming messages.
 
-*Note: Bootstrapping is split because the description and initialization phases can be skipped in production.
-Read more about this in "Optimize for production" chapter.*
+{.alert .alert-light}
+Bootstrapping is split because the description and initialization phases can be skipped in production.
+Read more about this in "Optimize for production" chapter.
 
 ### Initialize
 
@@ -279,8 +285,9 @@ as a **factory function** for the service. When `EventStore::class` is not in th
 Often one service depends on other services. The Postgres event store used in the skeleton for example requires a `MessageFactory` a `\PDO` connection and a `PersistenceStrategy`
 and because all services are provided by the same `ServiceFactory` we can simply get those services by calling the appropriate methods.
 
-*Note: By default a closure is bound to its parent scope (the service factory instance in this case). Hence, insight the closure we have
-access to all methods of the service factory no matter if they are declared public, protected or private.*
+{.alert .alert-light}
+By default a closure is bound to its parent scope (the service factory instance in this case). Hence, insight the closure we have
+access to all methods of the service factory no matter if they are declared public, protected or private.
 
 ```php
 public function eventStore(): EventStore
@@ -355,8 +362,9 @@ private function assertMandatoryConfigExists(string $path): void
 }
 ```
 
+{.alert .alert-info}
 Again, this is all userland implementation. *Disco Light* does not care about it. If you don't like it to put all services
-in a single class then you can use traits and only merge them in the `ServiceFactory`.
+in a single class then use traits and only merge them in the `ServiceFactory`.
 And if you don't like the approach at all, use another PSR-11 container! In any case you can learn from the skeleton service
 factory how the mandatory services need to be wired together. Porting this knowledge to a container of your choice shouldn't be a problem.
 

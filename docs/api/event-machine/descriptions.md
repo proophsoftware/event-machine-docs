@@ -18,8 +18,10 @@ interface EventMachineDescription
 ```
 
 Descriptions need to be loaded **before** `EventMachine::initialize()` is called.
-In the skeleton descriptions are listed in [config/autoload/global.php](https://github.com/proophsoftware/event-machine-skeleton/blob/master/config/autoload/global.php#L37)
-and this list is read by the event machine factory method of the [ServiceFactory](https://github.com/proophsoftware/event-machine-skeleton/blob/master/src/Service/ServiceFactory.php#L268).
+
+{.alert .alert-info}
+In the skeleton descriptions are listed in [config/autoload/global.php](https://github.com/proophsoftware/event-machine-skeleton/blob/master/config/autoload/global.php#L37){: class="alert-link"}
+and this list is read by the event machine factory method of the ServiceFactory:
 
 ```php
 public function eventMachine(): EventMachine
@@ -46,37 +48,120 @@ public function eventMachine(): EventMachine
 }
 ```
 
-### Organising Descriptions
-
+{.alert .alert-info}
+**Organising Descriptions:**
 If you followed the tutorial, you already know that you can avoid code duplication and typing errors with a few simple tricks.
 Clever combinations of class and constant names can provide readable code without much effort. The skeleton ships with default Event Machine Descriptions
-to support you with that idea. You can find them in [src/Api](https://github.com/proophsoftware/event-machine-skeleton/tree/master/src/Api).
+to support you with that idea. You can find them in [src/Api](https://github.com/proophsoftware/event-machine-skeleton/tree/master/src/Api){: class="alert-link"}
 
 ## Registration API
 
 Event Machine provides various `registration` methods. Those methods can only be called during **description phase** (see "Set Up" chapter for details about bootstrap phases).
-Here is an overview of available methods along with a short explanation.
+Here is an overview of available methods:
 
-| Method | Description |
-|---|---|
-| EventMachine::registerCommand(string $name, JsonSchema\ObjectType $payloadSchema): EventMachine | Add a command message to the system along with its payload schema |
-| EventMachine::registerEvent(string $name, JsonSchema\ObjectType $payloadSchema): EventMachine | Add an event message to the system along with its payload schema |
-| EventMachine::registerQuery(string $name, JsonSchema\ObjectType $payloadSchema): QueryDescription | Add a query message to the system along with its payload schema |
-| EventMachine::registerType(string $name, JsonSchema\ObjectType $payloadSchema): void | Add a data type to the system along with its json schema |
-| EventMachine::registerEnumType(string $name, JsonSchema\EnumType $payloadSchema): void | Add an enum type to the system along with its json schema |
-| EventMachine::preProcess(string $cmdName, string \| CommandPreProcessor $preProcessor): EventMachine | Service id or instance of a CommandPreProcessor invoked before command is dispatched |
-| EventMachine::process(string $cmdName): CommandProcessorDescription | Describe handling of a command using returned CommandProcessorDescription |
-| EventMachine::on(string $eventName, string \| callable $listener): EventMachine | Service id or callable event listener invoked after event is written to event stream |
-| EventMachine::watch(Stream $stream): ProjectionDescription | Describe a projection by using returned ProjectionDescription |
+```php
+<?php
 
+declare(strict_types=1);
 
-### Message Payload Schema
+namespace Prooph\EventMachine;
 
-Messages are like HTTP requests. Well, a HTTP request is a message of a specific format. Event Machine messages on the other hand are [prooph/common messages](https://github.com/prooph/common/blob/master/docs/messaging.md).
+//...
+
+final class EventMachine implements MessageDispatcher, AggregateStateStore
+{
+    //...
+
+    /**
+     * Add a command message to the system along with its payload schema
+     */
+    public function registerCommand(string $commandName, ObjectType $schema): self
+    {
+        //...
+    }
+
+    /**
+     * Add an event message to the system along with its payload schema
+     */
+    public function registerEvent(string $eventName, ObjectType $schema): self
+    {
+        //...
+    }
+
+    /**
+     * Add a query message to the system along with its payload schema
+     */
+    public function registerQuery(string $queryName, ObjectType $payloadSchema = null): QueryDescription
+    {
+        //...
+    }
+
+    /**
+     * Add a data type to the system along with its json schema
+     */
+    public function registerType(string $nameOrImmutableRecordClass, ObjectType $schema = null): void
+    {
+        //...
+    }
+
+    /**
+     * Add an enum type to the system along with its json schema
+     */
+    public function registerEnumType(string $typeName, EnumType $schema): void
+    {
+        //...
+    }
+
+    /**
+     * Service id or instance of a CommandPreProcessor invoked before command is dispatched
+     *
+     * @param string $commandName
+     * @param string | CommandPreProcessor $preProcessor
+     */
+    public function preProcess(string $commandName, $preProcessor): self
+    {
+        //...
+    }
+
+    /**
+     * Describe handling of a command using returned CommandProcessorDescription
+     */
+    public function process(string $commandName): CommandProcessorDescription
+    {
+        //...
+    }
+
+    /**
+     * Service id or callable event listener invoked after event is written to event stream
+     *
+     * @param string $eventName
+     * @param string | callable $listener
+     */
+    public function on(string $eventName, $listener): self
+    {
+        //...
+    }
+
+    /**
+     * Describe a projection by using returned ProjectionDescription
+     */
+    public function watch(Stream $stream): ProjectionDescription
+    {
+        //...
+    }
+
+    //...
+}
+
+```
+
+## Message Payload Schema
+
+Messages are like HTTP requests, but they are protocol agnostic. For HTTP requests/responses PHP-FIG has defined a standard known as PSR-7. Event Machine messages on the other hand are [prooph/common messages](https://github.com/prooph/common/blob/master/docs/messaging.md).
+
 Like HTTP requests **messages should be validated before doing anything with them**. It can become a time consuming task to write validation logic for each message
-by hand. Event Machine would not be a rapid application development framework if it does not ship with a built-in way to validate messages.
-Long story; short: [Json Schema Draft 6](http://json-schema.org/specification-links.html#draft-6) is used to describe message payloads and validation rules for payload properties.
-You do this using `JsonSchema` wrapper objects provided by Event Machine. Those objects are much simpler to use instead of writing JSON Schema by hand and drastically improve
+by hand. Hence, Event Machine has a built-in way to validate messages using [Json Schema Draft 6](http://json-schema.org/specification-links.html#draft-6).
+You do this using `JsonSchema` wrapper objects provided by Event Machine. Those objects are simple to use and drastically improve
 readability of the code.
 
 Again the command registration example from the previous chapter:
@@ -94,14 +179,16 @@ $eventMachine->registerCommand(
 This code speaks for itself, doesn't it? It is beautiful and clean (IMHO) and once you're used to it you can add new messages to the system in less than 30 seconds.
 The chapter about "Json Schema" covers all the details. Make sure to check it out.
 
-*A nice side effect of this approach is out-of-the-box [Swagger UI](https://swagger.io/tools/swagger-ui/) support. Learn more about it in the "Swagger UI" chapter.*
+{.alert .alert-info}
+A nice side effect of this approach is out-of-the-box [Swagger UI](https://swagger.io/tools/swagger-ui/){: class="alert-link"} support. Learn more about it in the "Swagger UI" chapter.
 
-### Command Registration
+## Command Registration
 
 Event Machine needs to know which commands can be processed by the system. Therefor, you have to register them before defining processing logic.
 
-*Software developed with Event Machine follows a Command-Query-Responsibility-Segregation (short CQRS) approach.
-Commands are used to trigger state changes without returning modified state and queries are used to request current state without modifying it.*
+{.alert .alert-light}
+Software developed with Event Machine follows a Command-Query-Responsibility-Segregation (short CQRS) approach.
+Commands are used to trigger state changes without returning modified state and queries are used to request current state without modifying it.
 
 You're ask to tell Event Machine a few details about available commands. Each command should have a **unique name** and a **payload schema**.
 It is recommended to add a context as prefix in front of each command name. Let's take an example from the tutorial but add a context to the command name:
@@ -145,7 +232,7 @@ class Command implements EventMachineDescription
 Event Machine makes no assumptions about the format of the name. A common approach is to use a *dot notation* to separate context from message name
 e.g. `BuildingMgmt.AddBuilding`. Using *dot notation* has the advantage that message broker like RabbitMQ can use it for routing.
 
-### Command Processing
+## Command Processing
 
 Once Event Machine knows about a command your can register processing logic for it. Commands are processed by **aggregate functions**. Think of an aggregate as a process with
 multiple steps. Each step is triggered by a command and there is only one active step for a specific process aka. aggregate at the same time.

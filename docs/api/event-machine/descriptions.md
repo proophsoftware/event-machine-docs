@@ -234,16 +234,32 @@ e.g. `BuildingMgmt.AddBuilding`. Using *dot notation* has the advantage that mes
 
 ## Command Processing
 
-Once Event Machine knows about a command your can register processing logic for it. Commands are processed by **aggregate functions**. Think of an aggregate as a process with
+Once Event Machine knows about a command you can register processing logic for it. Commands are processed by **aggregate functions**. Think of an aggregate as a process with
 multiple steps. Each step is triggered by a command and there is only one active step for a specific process aka. aggregate at the same time.
 
 ![Order Stream](img/order_stream.png)
 
 In Event Machine aggregate functions are **stateless**. You can use plain PHP functions or classes with static public methods.
 
-*Read more about aggregate functions in the "Aggregates" chapter.*
+Before we dive deeper into aggregate functions, let's have a look at how commands are processed.
+The following gif shows the power of Event Machine Descriptions especially `CommandProcessingDescription`.
+A fluent interface mixed with clever class and constant naming + modern IDE support (PHPStorm in this case)
+can assist you while putting together the pieces. You need to remember less which frees your mind to reason more about
+the logic you're developing. This results in a higher quality business logic, written in a shorter time.
+Try it yourself. It's actually a lot of fun to work with Event Machine.
 
-In this chapter we want to take a look how commands are passed to their responsible aggregate functions.
+{.alert .alert-light}
+Keep an eye on the array callable syntax: `[ShoppingCart::class, 'addItem']`. PHPStorm provides code completion for it and respects it while renaming methods and classes.
+That's an awesome feature and makes the syntax save to use.
+
+![Command Processing Description](img/desc.gif)
+
+Event Machine Descriptions keep glue code outside of the core business logic. This reduces "noise" in the core and creates
+a central overview for navigation through the code.
+
+{.alert .alert-info}
+Details about the various Description types can be found in their respective chapters like "aggregates", "event listeners" and "projections".
+
 
 
 

@@ -20,6 +20,6 @@
 <link rel="apple-touch-icon-precomposed" href="http://getprooph.org/images/ico/apple-touch-icon-57-precomposed.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@prooph_software">
-<meta name="twitter:title" content="prooph components">
-<meta name="twitter:description" content="Enterprise-ready CQRS and Event Sourcing packages for PHP with support for the most famous PHP web frameworks">
-<meta name="twitter:image" content="http://getprooph.org/images/prooph-components-intro.png">
+<meta name="twitter:title" content="Event Machine">
+<meta name="twitter:description" content="Event Sourced RAD - based on prooph components">
+<meta name="twitter:image" content="https://proophsoftware.github.io/event-machine/api/event_machine/img/Aggregate_Lifecycle.png">

@@ -14,5 +14,6 @@ $cssBootswatch = getenv('CSS_BOOTSWATCH') ?: 'cerulean';
 <div class="page-wrapper">
     <?php echo $this->render('core'); ?>
 </div>
+<?= $this->forkOnGithub(); ?>
 <?php echo $this->render('script'); ?>
 </body>

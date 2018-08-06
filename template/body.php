@@ -16,4 +16,5 @@ $cssBootswatch = getenv('CSS_BOOTSWATCH') ?: 'cerulean';
 </div>
 <?= $this->forkOnGithub(); ?>
 <?php echo $this->render('script'); ?>
+<script src="https://bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 </body>

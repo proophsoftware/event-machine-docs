@@ -406,7 +406,7 @@ Well, outside of the **functional core**. The following diagram illustrates that
 The diagram shows three layers. The outermost layer is where `I/O` happens. Event Machine acts as a middleware between `I/O` layer and the `functional core`.
 
 ## Read I/O
-We've learned in the "Descriptions" chapter that we can tell Event Machine to invoke a `ContextProvider` before invoking an aggregate function.
+We can tell Event Machine to invoke a `ContextProvider` before invoking an aggregate function.
 That's the preferred way to perform read I/O to query data needed by the aggregate.
 
 ```php

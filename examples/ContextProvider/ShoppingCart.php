@@ -29,8 +29,6 @@ final class ShoppingCart
 
     public static function addItem(State $cart, Message $addItem, AddItemContext $context): \Generator
     {
-
-
         yield [Event::ITEM_ADDED, [
             Payload::SHOPPING_CART_ID => $addItem->get(Payload::SHOPPING_CART_ID),
             Payload::ITEM => $context->item()->toArray(),

@@ -1,7 +1,10 @@
 {
   "title": "API",
   "content": [
-    {"event_machine": "event-machine/bookdown.json"},
+    {"set_up": "set-up/bookdown.json"},
+    {"descriptions": "descriptions/descriptions.md"},
+    {"aggregates": "aggregates/aggregates.md"},
+    {"immutable_state": "state/immutable_state.md"},
     {"document_store": "document-store/bookdown.json"},
     {"projections": "projections/bookdown.json"}
   ],

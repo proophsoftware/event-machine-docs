@@ -244,8 +244,8 @@ final class State implements ImmutableRecord
 We can make a copy of the record and modify that. The original record is not modified,
 and we return the copy to satisfy the immutable record contract.
 
-Besides `withCheckedInUser` we've added a new property, `users`, and a getter for it. We also overrode the `__schema`
-method of `ImmutableRecordLogic` to pass a type hint to `ImmutableRecordLogic::generateSchemaFromPropTypeMap()`.
+Besides `withCheckedInUser` we've added a new property, `users`, and a getter for it. We also overrode the private static method `arrayPropItemTypeMap`
+of `ImmutableRecordLogic` to define a type hint for the items in the `users` array property.
 Unfortunately, we can only type hint for `array` in PHP, and it is not possible to use return type hints like `string[]`.
 Hopefully this will change in a future version of PHP, but, for now, we have to live with the workaround and give
 `ImmutableRecordLogic` a hint that array items of the `users` property are of type `string`.

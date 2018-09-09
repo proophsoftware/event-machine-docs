@@ -3,7 +3,8 @@
     "content": [
         {"intro": "intro/bookdown.json"},
         {"tutorial": "tutorial/bookdown.json"},
-        {"api": "api/bookdown.json"}
+        {"api": "api/bookdown.json"},
+        {"news": "news/bookdown.json"}
     ],
     "theme": {
         "toc": {

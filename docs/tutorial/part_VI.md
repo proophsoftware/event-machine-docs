@@ -198,7 +198,7 @@ final class State implements ImmutableRecord
     public static function __schema(): Type
     {
         return self::generateSchemaFromPropTypeMap([
-            'users' => ImmutableRecord::PHP_TYPE_STRING
+            'users' => JsonSchema::TYPE_STRING,
         ]);
     }
 

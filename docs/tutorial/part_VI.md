@@ -197,7 +197,7 @@ final class State implements ImmutableRecord
 
     private static function arrayPropItemTypeMap(): array
     {
-        return ['users' => ImmutableRecord::PHP_TYPE_STRING];
+        return ['users' => JsonSchema::TYPE_STRING];
     }
 
     /**

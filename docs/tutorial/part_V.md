@@ -32,6 +32,41 @@ class Payload
 ```
 ... and replace plain strings with the constants in our codebase:
 
+`src/Api/Aggregate`
+
+```php
+<?php
+declare(strict_types=1);
+
+namespace App\Api;
+
+use App\Model\Building;
+use Prooph\EventMachine\EventMachine;
+use Prooph\EventMachine\EventMachineDescription;
+
+class Aggregate implements EventMachineDescription
+{
+    const BUILDING = 'Building';
+
+    /**
+     * @param EventMachine $eventMachine
+     */
+    public static function describe(EventMachine $eventMachine): void
+    {
+        $eventMachine->process(Command::ADD_BUILDING)
+            ->withNew(self::BUILDING)
+            ->identifiedBy(Payload::BUILDING_ID) //<-- AggregateId payload property
+            ->handle([Building::class, 'add'])
+            ->recordThat(Event::BUILDING_ADDED)
+            ->apply([Building::class, 'whenBuildingAdded']);
+
+        /* ... */
+    }
+}
+
+```
+
+
 `src/Api/Command`
 
 ```php

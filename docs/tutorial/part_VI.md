@@ -195,11 +195,9 @@ final class State implements ImmutableRecord
      */
     private $users = [];
 
-    public static function __schema(): Type
+    private static function arrayPropItemTypeMap(): array
     {
-        return self::generateSchemaFromPropTypeMap([
-            'users' => ImmutableRecord::PHP_TYPE_STRING
-        ]);
+        return ['users' => ImmutableRecord::PHP_TYPE_STRING];
     }
 
     /**

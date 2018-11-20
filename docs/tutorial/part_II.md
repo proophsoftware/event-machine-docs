@@ -43,6 +43,10 @@ we stick to static methods and group all methods of an aggregate in a class.
 `Building::add()` receives `AddBuilding` messages (of type command) and should perform the business logic needed to
 add a new building to our application. But instead of adding a new building directly we're ask to yield a domain event.
 
+{.alert .alert-info}
+A neat feature called **Flavours** allows you to choose between different programming styles. Throughout the tutorial
+we use the **PrototypingFlavour**. Two bonus parts at the end of the tutorial introduce the **FunctionalFlavour** and **OopFlavour**.
+
 ## Domain Events
 
 Domain events are the second message type used by Event Machine. The domain model is event sourced, meaning it records

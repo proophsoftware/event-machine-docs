@@ -184,11 +184,16 @@ This will fill the new read model with data from the past. That's cool, isn't it
 
 Run the command `docker-compose run php php bin/reset.php` in the project directory and check the table again.
 
+
 Here we go:
 
 id | doc
 ---|---
 John | {"buildingId": "9ee8d8a8-3bd3-4425-acee-f6f08b8633bb"}
+
+{.alert .alert-warning}
+If the table is empty make sure that you've checked in John. If that's the case, your projection might have a problem. Check the troubleshooting section
+of Event Machine's README.
 
 ## Look up
 

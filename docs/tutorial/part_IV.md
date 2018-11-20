@@ -217,6 +217,10 @@ so the finder must resolve the deferred object instead of returning a result.
 We work with the `Promise` and `Deferred` objects provided by the `ReactPHP` library (unfortunately, we have no
 PSR for promises yet). Event Machine takes care of resolving promises returned by prooph's query bus.
 
+{.alert .alert-info}
+Finders or resolvers are async by default, due to prooph's QueryBus used under the hood. However, a finder can implement the marker interface
+`Prooph\EventMachine\Querying\SyncResolver` to change method signature and return a result instead of resolving a deferred object. Check the docs for details.
+
 The finder needs to query the read model. While looking at projections we briefly discussed
 Event Machine's `DocumentStore` API. The finder can use it to access documents organized in collections. Let's see
 how that works.

@@ -126,6 +126,7 @@ use App\Api\Payload;
 use App\Infrastructure\Projector\UserBuildingList;
 use AppTest\BaseTestCase;
 use Prooph\EventMachine\Persistence\DocumentStore;
+use Prooph\EventMachine\Persistence\InMemoryConnection;
 use Prooph\EventMachine\Projecting\AggregateProjector;
 
 final class UserBuildingListTest extends BaseTestCase
@@ -150,7 +151,7 @@ final class UserBuildingListTest extends BaseTestCase
     {
         parent::setUp();
 
-        $this->documentStore = new DocumentStore\InMemoryDocumentStore();
+        $this->documentStore = new DocumentStore\InMemoryDocumentStore(new InMemoryConnection());
         $this->projector = new UserBuildingList($this->documentStore);
         $this->projector->prepareForRun(self::APP_VERSION, self::PROJECTION_NAME);
     }

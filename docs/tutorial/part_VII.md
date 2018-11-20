@@ -228,13 +228,10 @@ Try to check *John* in again, while keeping an eye on the monitoring app `http:/
 
 Congratulations! You've mastered the Event Machine tutorial. There are two bonus parts available to learn more
 about **custom projections** and **testing with Event Machine**.
-The current implementation is available as a **demo** branch of `proophsoftware/event-machine-skeleton`.
-There is a second branch called **demo-oop** available that contains a similar
-implementation, but the `Building` aggregate is designed using an object oriented approach rather than
-the functional approach shown in the tutorial. If you like that OOP style more you can of course use that.
+And another two bonus parts introduce **Event Machine Flavours**. Choose your own Flavour and maximize your very personal
+developer experience with Event Machine.
 
-Functional programming fans might dislike the static class methods. You can also use real functions instead of static class methods, but
-you have to configure *composer* to always require the files containing your functions. It's up to you.
+The current implementation is available as a **demo** branch of `proophsoftware/event-machine-skeleton`.
 
 The Event Machine API docs contain a lot more details. Last but not least, a reminder that the prooph software team
 offers commercial project support and workshops for Event Machine and the prooph components.

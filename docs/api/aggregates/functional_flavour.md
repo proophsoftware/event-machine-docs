@@ -1,4 +1,4 @@
-# Aggregates
+# Functional Flavour
 
 > Event Sourced Aggregates are Domain-Driven Aggregates, representing a unit of consistency.
  They protect invariants. This basically means that an aggregate makes sure that it can transition to a new state.
@@ -6,35 +6,26 @@
 
  *Source: http://docs.getprooph.org/tutorial/event_sourcing_basics.html#1-3-3*
 
-When reading the definition above one immediately thinks of an object with internal state and methods to change that state.
-It's because we are used to work with object oriented programming. In Event Machine (and prooph/micro as well) we stick to the same
-basic definition of an aggregate but apply a functional approach. This means that we use **pure functions** and
-**immutable state** in favour of mutable objects.
-
-
 ## Functions vs. Objects
 
-{.alert .alert-light}
-Why functions, not objects?
+Event Machine supports three programming styles out-of-the-box: **OopFlavour, PrototypingFlavour and FunctionalFlavour**.
 
-I'm glad you asked! Well, there is nothing wrong with using CQRS & Event Sourcing in an object oriented fashion.
-But it turned out that the idea of a **functional core** plays well with Event Sourcing. If you look at the core ideas
-of Event Sourcing you'll recognize that it is heavily based on functional patterns: *immutable events*, *append-only streams*, *left fold of past events to calculate current state*, ...
-
-Business logic does not necessarily require OOP patterns, In fact, a functional core can avoid accidental complexity. Event Machine is one possible
-implementation that handles a lot of boilerplate for you.
-[prooph/micro](https://github.com/prooph/micro) is another - more lightweight - implementation, which means more freedom but also more design decisions.
+On this page we focus on the Prototyping and Functional Flavour. Both follow the same idea of a **functional core**.
+vent Sourcing is heavily based on functional patterns:
+*immutable events*, *append-only streams*, *left fold of past events to calculate current state*, ...
 
 {.alert .alert-info}
-*The good news is, that it is very easy to migrate from Event Machine to prooph/micro. You can start with the simplicity of Event Machine and focus
-on model exploration. Once you have a working model but you need fine-grained scalability options you can switch to prooph/micro and continue your journey.*
+The difference between Prototyping and Functional is that the **PrototypingFlavour** uses generic Event Machine messages while the
+**FunctionalFlavour** is 100% decoupled from Event Machine. Code examples shown here are based on the PrototypingFlavour.
+If you're curious how you can switch to another Flavour, then check out the Event Machine tutorial. It covers all three
+Flavours in detail.
 
 **Event Machine grows with your application from prototype to MVP up to a rock solid production system**.
 And it is able to reduce boilerplate code to a bare minimum because of a few "simple" rules:
 
 ## 1. Pure Functions
 
-Given the same input an aggregate function will **always** produce the same result.
+Given the same input a pure function will **always** produce the same result.
 
 Here is the simplest form of a pure aggregate function in Event Machine:
 
@@ -377,7 +368,7 @@ final class SomeBusinessProcessTest extends BaseTestCase
 ```
 
 {.alert .alert-success}
-Working with **immutable state** avoids a whole bunch of silly and hidden errors. Method calls are predictable.
+Working with **immutable state** avoids a whole bunch of silly and hidden errors. Function calls are predictable.
 You can harden the system With simple tests, pave the way for refactorings and keep velocity high.
 Event Machine also has an easy job. It does not need to care about state changes, because they are fully managed in userland code.
 This means, that you have full control. **No object mapping layer required, no dirty state and no unit of work.**
@@ -725,7 +716,7 @@ final class ShoppingCart
 ```
 
 {.alert .alert-info}
-**Wrap UP:** Aggregates in Event Machine are composed of pure functions and immutable state. Command Processing Descriptions tell Event Machine how the pieces fit
+**Wrap UP:** Aggregates in Event Machine are composed of pure functions and immutable state (when using Prototyping or Functional Flavour). Command Processing Descriptions tell Event Machine how the pieces fit
 together. This reduces boilerpate code and we can focus on the domain and avoid silly bugs that interrupt our model exploration.
 
 In the next chapter you'll learn how immutable value objects can be generated quickly.

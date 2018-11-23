@@ -21,5 +21,5 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@prooph_software">
 <meta name="twitter:title" content="Event Machine">
-<meta name="twitter:description" content="Event Sourced RAD - based on prooph components">
-<meta name="twitter:image" content="https://proophsoftware.github.io/event-machine/api/event_machine/img/Aggregate_Lifecycle.png">
+<meta name="twitter:description" content="Rapid CQRS / ES framework for PHP with a path to refactor towards a richer domain model as needed.">
+<meta name="twitter:image" content="https://proophsoftware.github.io/event-machine/img/Event_Machine_Intro.png">

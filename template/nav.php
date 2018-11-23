@@ -33,7 +33,7 @@ $page = $this->page->getRoot();
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="http://getprooph.org">
+            <a class="navbar-brand" href="<?php echo $page->getHref(); ?>">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" class="prooph-logo">
                     <defs>
                         <style>

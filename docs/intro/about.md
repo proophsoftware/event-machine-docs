@@ -3,14 +3,6 @@
 prooph software Event Machine takes away all the boring, time consuming parts of event sourcing to speed up
 development of event sourced applications and increase the fun. It can be used for prototypes as well as full featured applications.
 
-## Microservices
-
-Event Machine emphasises a Microservices architecture where individual services are kept relatively small and autonomous.
-When dividing application logic into multiple independent services it is mandatory to have tools in place to orchestrate
-and manage them. On the infrastructure level there are many excellent tools available but this is not enough.
-If you have a business process that involves 3 different services you need a sane way to visualize and control that
-process as a whole. With the built-in message flow analyzer Event Machine is capable of providing such a visualization and monitoring tool.
-
 ## Origin
 
 Event Machine was originally designed as a "workshop framework" for CQRS and Event Sourcing and is inspired by the **Dreyfus model**.
@@ -24,15 +16,16 @@ Event Machine was originally designed as a "workshop framework" for CQRS and Eve
 ### Rapid Application Development
 It turned out that Event Machine is not only a very good CQRS and Event Sourcing learning framework but that the same concept
 can be used for rapid application development (RAD). RAD frameworks focus on developer happiness and coding speed.
-Both can be achieved by using conventions, which allows the framework to do a lot of work "under the hood"
-so that developers can focus on the important part: **developing the application**.
+Both can be achieved by using conventions, which allow the framework to do a lot of work "under the hood"
+Developers can focus on the important part: **developing the application**.
 
-Having said this, Event Machine can be compared with frameworks like Ruby on Rails or Laravel, but it also has a **unique selling point**.
-Instead of working with a CRUD based approach, **Event Machine uses CQRS and Event Sourcing**, leveraging [prooph/components](http://getprooph.org)
-under the hood. This enables interesting scenarios like **starting a project with a lean and rapid development approach** and switch to an enterprise
-approach later. With Event Machine you get **separation of concerns from day one**. You also get separated write and read models which can be scaled
-independent of each other. Finally, you get **a full history of all state changes**, so it is not only cheap to develop an application
-with Event Machine but it's also cheap to maintain that application in production.
+## Event Machine Flavours
+
+Event Machine Flavours make it possible to turn a rapidly developed prototype into a rock solid application.
+You can switch from the default **PrototypingFlavour** to either the **FunctionalFlavour** or **OopFlavour**. Finally, you can implement your own
+Flavour to build your very own CQRS / ES framework.
+
+[Learn More](https://proophsoftware.github.io/event-machine/tutorial/)
 
 ## Powered By
 

@@ -239,5 +239,9 @@
         .jumbotron pre {
             display: none;
         }
+
+        .flavour {
+            margin-top: 60px;
+        }
     }
 </style>

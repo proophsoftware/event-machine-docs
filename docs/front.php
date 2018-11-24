@@ -12,10 +12,12 @@ $htmlMessageBox = __DIR__ . '/html/img/cqrs_messagebox_swagger.png';
 $htmlLogo = __DIR__ . '/html/img/prooph_features.png';
 $htmlTutorial = __DIR__ . '/html/img/tutorial_screen.png';
 $htmlIntro = __DIR__ . '/html/img/Event_Machine_Intro.png';
-foreach ([$htmlMessageBox, $htmlLogo, $htmlTutorial, $htmlIntro] as $file) {
+$htmlChooseFlavour = __DIR__ . '/html/img/Choose_Flavour.png';
+foreach ([$htmlMessageBox, $htmlLogo, $htmlTutorial, $htmlIntro, $htmlChooseFlavour] as $file) {
     if(file_exists($file)) unlink($file);
 }
 copy(__DIR__ . '/img/cqrs_messagebox_swagger.png', $htmlMessageBox);
 copy(__DIR__ . '/img/prooph_features.png', $htmlLogo);
 copy(__DIR__ . '/img/tutorial_screen.png', $htmlTutorial);
 copy(__DIR__ . '/img/Event_Machine_Intro.png', $htmlIntro);
+copy(__DIR__ . '/img/Choose_Flavour.png', $htmlChooseFlavour);

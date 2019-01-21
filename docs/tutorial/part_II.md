@@ -139,6 +139,7 @@ declare(strict_types=1);
 
 namespace App\Api;
 
+use App\Model\Building;
 use Prooph\EventMachine\EventMachine;
 use Prooph\EventMachine\EventMachineDescription;
 

@@ -113,7 +113,7 @@ public ${STATIC} function ${FIELD_NAME}()#if(${RETURN_TYPE}): ${RETURN_TYPE}#els
 #end
 }
 ```
-Now we can return a new `Building\State` from `Building::whenBuilidngAdded()`.
+Now we can return a new `Building\State` from `Building::whenBuildingAdded()`.
 
 ```php
 <?php
